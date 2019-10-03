@@ -1,7 +1,5 @@
 package com.javaassessment.data;
 
-import java.util.List;
-
 public class City extends DataBean {
     public City(String name) {
         if (name == null) {
@@ -24,9 +22,7 @@ public class City extends DataBean {
         School foundSchool = (School) addData(school);
 
         if (foundSchool != school) {
-            List<SchoolClass> schoolClasses = school.getSchoolClass();
-
-            schoolClasses.forEach(foundSchool::addSchoolClass);
+            school.getSchoolClass().forEach(foundSchool::addSchoolClass);
         }
 
         return foundSchool;

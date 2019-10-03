@@ -29,7 +29,7 @@ class ProvinceTest {
         City newCity = new City(testCityName);
         City ourCity = testProvince.addCity(newCity);
 
-        assertNotEquals(newCity, ourCity);
+        assertNotSame(newCity, ourCity);
     }
 
     @Test
@@ -41,14 +41,12 @@ class ProvinceTest {
 
     @Test
     void testForExistingCity() {
-        City city = (City) testProvince.getDataByName(testCityName).get(0);
-
-        assertNotNull(city);
+        assertTrue(testProvince.getDataByName(testCityName).isPresent());
     }
 
     @Test
     void testGeneratedReport() {
-        City testCity = (City) testProvince.getDataByName(testCityName).get(0);
+        City testCity = (City) testProvince.getDataByName(testCityName).get();
         testCity.addSchool(new School(testSchoolName, testSchoolClass));
 
         String testReport = String.format("%s\t%d\n%s\t%d\n%s\t%d\n", testSchoolName, testSchoolSize, testCityName,

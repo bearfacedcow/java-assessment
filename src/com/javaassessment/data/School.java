@@ -27,8 +27,7 @@ public class School extends DataBean {
     }
 
     public String generateReport() {
-        int totalClassSize = getTotal();
-        return String.format("%s\t%d\n", name, totalClassSize);
+        return String.format("%s\t%d\n", name, getTotal());
     }
 
     public int getTotal() {

@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CityTest {
     private City testCity;
@@ -35,16 +35,14 @@ class CityTest {
 
     @Test
     void testEmptySchools() {
-        List<DataBean> testSchool = this.testCity.getDataByName(this.testSchoolName);
-
-        assertEquals(testSchool.size(), 0);
+        assertTrue(this.testCity.getDataByName(this.testSchoolName).isEmpty());
     }
 
     @Test
     void testCityWithOneSchool() {
         this.testCity = new City(this.testCityName, new School(this.testSchoolName, this.testSchoolClass));
 
-        School testSchool = (School) this.testCity.getDataByName(this.testSchoolName).get(0);
+        School testSchool = (School) this.testCity.getDataByName(this.testSchoolName).get();
 
         assertEquals(testSchool.getName(), testSchoolName);
     }
@@ -55,7 +53,7 @@ class CityTest {
         School testSchoool = new School(this.testSchoolName, "70300");
         School school = testCity.addSchool(testSchoool);
 
-        assertTrue( school != testSchoool );
+        assertNotSame(school, testSchoool);
     }
 
     @Test

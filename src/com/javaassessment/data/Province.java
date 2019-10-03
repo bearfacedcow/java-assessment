@@ -1,8 +1,5 @@
 package com.javaassessment.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Province extends DataBean {
 
     public Province(String provinceName) {
