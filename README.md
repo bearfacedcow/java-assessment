@@ -1,4 +1,4 @@
-# My Most Recent Assessment Test
+# My Most Recent Assessment Challenge
 I am posting the code to my most recent Java Assessment test that I took for a prospective Java Developer position.
 
 My purpose in posting this challenge to give prospective employers a perspective into my Java mindset. I have always had a test-driven mindset when it comes to object oriented programming, along with my "think complex - not complicated" methodology in order to produce dependable working solutions that are both comprehensible and maintainable.
