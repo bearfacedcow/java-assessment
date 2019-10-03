@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class SchoolData {
     private List<Province> provinces;
@@ -38,20 +37,19 @@ public class SchoolData {
         }
     }
 
-    public List<Province> getProvinceByName(String provinceName) {
+    public Optional<Province> getProvinceByName(String provinceName) {
         Predicate<Province> provinceSearch = province -> province.getName().equals(provinceName);
-        return provinces.stream().filter(provinceSearch).collect(Collectors.toList());
+        return provinces.stream().filter(provinceSearch).findFirst();
     }
 
     public Province addProvince(Province province) {
-        List<Province> foundProvince = getProvinceByName(province.getName());
+        Province foundProvince = getProvinceByName(province.getName()).orElse(province);
 
-        if (foundProvince.size() > 0) {
-            return foundProvince.get(0);
+        if (foundProvince == province) {
+            provinces.add(province);
         }
-
-        provinces.add(province);
-        return province;
+        
+        return foundProvince;
     }
 
     private void parseAndCreateData(String input) {
@@ -74,8 +72,6 @@ public class SchoolData {
     }
 
     public String report() {
-        Optional<String> reportOpt = provinces.stream().map(Province::generateReport).reduce((rpt, gen) -> rpt + gen);
-
-        return reportOpt.orElse("");
+        return provinces.stream().map(Province::generateReport).reduce((rpt, gen) -> rpt + gen).orElse("");
     }
 }
