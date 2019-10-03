@@ -21,9 +21,7 @@ public class DataBean {
     public void setName( String name ) { this.name = name; }
 
     public DataBean addData(DataBean dataBean) {
-        Optional<DataBean> dataBeanOptional = getDataByName(dataBean.getName());
-
-        DataBean result = dataBeanOptional.orElse(dataBean);
+        DataBean result = getDataByName(dataBean.getName()).orElse(dataBean);
 
         if (result == dataBean) {
             data.add(dataBean);
