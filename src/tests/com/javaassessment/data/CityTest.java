@@ -62,7 +62,7 @@ class CityTest {
         School testSchoool = new School("A Different School", "70300");
         School school = testCity.addSchool(testSchoool);
 
-        List<DataBean> schools = testCity.getData();
+        List<IDataBean> schools = testCity.getData();
 
         assertTrue(schools.size() > 1);
     }
